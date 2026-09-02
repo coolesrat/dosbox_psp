@@ -28,6 +28,9 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <sys/types.h>
+#ifndef MAXPATHLEN
+#define MAXPATHLEN 512          /* not provided by the PSP newlib headers */
+#endif
 #ifdef WIN32
 #include <signal.h>
 #endif
