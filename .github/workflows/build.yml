@@ -18,7 +18,7 @@ jobs:
         run: |
           docker run --rm --user root -v "$PWD":/src -w /src pspdev/pspdev:latest bash -c '
             set -e
-            apt-get update -qq && apt-get install -y -qq autoconf automake libtool
+            apk add --no-cache autoconf automake libtool
             export PSPDEV=/usr/local/pspdev
             export PATH=$PSPDEV/bin:$PATH
             ./autogen.sh
