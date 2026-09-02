@@ -3,7 +3,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-int _EXFUN(truncate, (const char *, off_t __length));
+int truncate(const char *path, off_t __length);
 int ftruncate(int fd, off_t length);
 #ifdef __cplusplus
 }
