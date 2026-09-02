@@ -144,7 +144,7 @@ void GUI_StartUp(Section * sec) {
 	}
 }
 
-void GFX_SetTitle(Bits cycles,Bits frameskip,bool paused){ }
+void GFX_SetTitle(Bit32s cycles,Bits frameskip,bool paused){ }
 void MAPPER_AddHandler(MAPPER_Handler * handler,MapKeys key,Bitu mods,char const * const eventname,char const * const buttonname) {
 	// TODO: implement
 }
