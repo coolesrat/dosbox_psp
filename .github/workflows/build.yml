@@ -51,4 +51,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: DOSBox-PSP-EBOOT
-          path: src/EBOOT.PBP
+          path: |
+            src/EBOOT.PBP
+            dosbox.conf

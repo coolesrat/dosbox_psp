@@ -81,6 +81,7 @@ struct private_hwdata {
 #include <pspkernel.h>
 #include <pspdisplay.h>
 #include <pspctrl.h>
+#include <pspiofilemgr.h>
 #include <pspirkeyb.h>
 #include "p_sprint.h"
 #ifdef PSPME
@@ -1733,6 +1734,7 @@ void GFX_ShowMsg(char const* format,...) {
 
 extern "C" int main(int argc, char* argv[]) {
 	try {
+		sceIoChdir("ms0:/PSP/GAME/DOSBOX");
 		CommandLine com_line(argc,argv);
 		Config myconf(&com_line);
 		control=&myconf;
