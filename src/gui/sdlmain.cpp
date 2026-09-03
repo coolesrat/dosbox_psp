@@ -285,7 +285,26 @@ void GFX_Events() {
 			}
 	} else {
 		if(key_hint) show_key_hint = true;
-		if(p_spReadKey(&key_state, pad.Buttons)) {
+		if((pad.Buttons & PSP_CTRL_CROSS) && !(prev_pad & PSP_CTRL_CROSS))
+			Mouse_ButtonPressed(0);
+		else if(!(pad.Buttons & PSP_CTRL_CROSS) && (prev_pad & PSP_CTRL_CROSS))
+			Mouse_ButtonReleased(0);
+		if((pad.Buttons & PSP_CTRL_CIRCLE) && !(prev_pad & PSP_CTRL_CIRCLE))
+			Mouse_ButtonPressed(1);
+		else if(!(pad.Buttons & PSP_CTRL_CIRCLE) && (prev_pad & PSP_CTRL_CIRCLE))
+			Mouse_ButtonReleased(1);
+		if((pad.Buttons & PSP_CTRL_START) && !(prev_pad & PSP_CTRL_START))
+			KEYBOARD_AddKey(KBD_enter, 1);
+		else if(!(pad.Buttons & PSP_CTRL_START) && (prev_pad & PSP_CTRL_START))
+			KEYBOARD_AddKey(KBD_enter, 0);
+		if((pad.Buttons & PSP_CTRL_SELECT) && !(prev_pad & PSP_CTRL_SELECT))
+			KEYBOARD_AddKey(KBD_esc, 1);
+		else if(!(pad.Buttons & PSP_CTRL_SELECT) && (prev_pad & PSP_CTRL_SELECT))
+			KEYBOARD_AddKey(KBD_esc, 0);
+
+		unsigned int keyboard_buttons = pad.Buttons &
+			~(PSP_CTRL_CROSS | PSP_CTRL_CIRCLE | PSP_CTRL_START | PSP_CTRL_SELECT);
+		if(p_spReadKey(&key_state, keyboard_buttons)) {
 			if(key_state.ctrl) KEYBOARD_AddKey(KBD_leftctrl, key_state.pressed);
 			if(key_state.alt) KEYBOARD_AddKey(KBD_leftalt, key_state.pressed);
 			if(key_state.shift) KEYBOARD_AddKey(KBD_leftshift, key_state.pressed);
